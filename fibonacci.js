@@ -14,4 +14,19 @@ function fibs(n) {
   return fibArr;
 }
 
-console.log(fibs(sequenceLength));
+function fibsRec(n) {
+  if (n <= 0) return undefined;
+  if (n === 1) return [0];
+  if (n === 2) return [0, 1];
+
+  function fibs(n, fibArr = [0, 1]) {
+    const i = fibArr.length;
+    if (i < n) return fibs(n, [...fibArr, fibArr[i - 1] + fibArr[i - 2]]);
+    return fibArr;
+  }
+
+  return fibs(n);
+}
+
+console.log("Iterative:", fibs(sequenceLength));
+console.log("Recursive:", fibsRec(sequenceLength));
